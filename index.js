@@ -3,10 +3,12 @@
  * @copyright Stanislav Kalashnik <darkpark.main@gmail.com>
  */
 
+/* eslint no-path-concat: 0 */
+
 'use strict';
 
 var Component = require('stb-component'),
-    Page      = require('stb-page'),
+    Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
     rc        = require('stb-rc'),
     classes = {
