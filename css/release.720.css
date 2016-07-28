@@ -1,0 +1,44 @@
+.component.footer {
+    width: 1160px;
+    height: 36px;
+    line-height: 36px;
+    position: absolute;
+    left: 60px;
+    bottom: 38px;
+    display: table;
+    z-index: 10; }
+    .component.footer > table {
+        vertical-align: middle;
+        text-align: center; }
+        .component.footer > table > tr > td {
+            width: 36px; }
+            .component.footer > table > tr > td.central {
+                width: 1088px; }
+                .component.footer > table > tr > td.central > .wrapper {
+                    height: 36px;
+                    visibility: inherit; }
+                    .component.footer > table > tr > td.central > .wrapper.hidden {
+                        display: none; }
+                    .component.footer > table > tr > td.central > .wrapper > .button {
+                        display: inline-block;
+                        height: 36px;
+                        padding: 0 20px 0 15px; }
+                        .component.footer > table > tr > td.central > .wrapper > .button.hidden {
+                            display: none; }
+                        .component.footer > table > tr > td.central > .wrapper > .button .title {
+                            padding-left: 10px; }
+            .component.footer > table > tr > td .icon {
+                display: block;
+                text-align: left;
+                background: no-repeat center center; }
+                .component.footer > table > tr > td .icon.info {
+                    text-align: right; }
+            .component.footer > table > tr > td .iconImg {
+                height: 36px;
+                line-height: 36px;
+                width: 36px;
+                text-align: center;
+                float: left; }
+            .component.footer > table > tr > td .title {
+                display: block;
+                float: right; }

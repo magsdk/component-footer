@@ -6,9 +6,9 @@
 
 'use strict';
 
-var Component = require('spa-component'),
-    Page = require('spa-page'),
-    dom = require('spa-dom'),
+var Component = require('stb-component'),
+    Page = require('stb-page'),
+    dom = require('stb-dom'),
     classes = {
         '8': 'back', '46': 'delete', '1009': 'channelPrev', '9': 'channelNext', '13': 'ok', '27': 'exit', '38': 'up',
         '40': 'down', '37': 'left', '39': 'right', '33': 'pageUp', '34': 'pageDown', '35': 'end', '36': 'home',
