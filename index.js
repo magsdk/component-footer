@@ -1,14 +1,17 @@
 /**
  * @module stb/ui/footer
- // @author Fedotov <d.fedotov@infomir.com>
+ *
+ * @author Fedotov <d.fedotov@infomir.com>
+ *
  * @license GNU GENERAL PUBLIC LICENSE Version 3
  */
 
 'use strict';
 
 var Component = require('stb-component'),
-    Page = require('stb-page'),
-    dom = require('stb-dom'),
+    Page      = require('stb-page'),
+    dom       = require('spa-dom'),
+    rc        = require('stb-rc'),
     classes = {
         '8': 'back', '46': 'delete', '1009': 'channelPrev', '9': 'channelNext', '13': 'ok', '27': 'exit', '38': 'up',
         '40': 'down', '37': 'left', '39': 'right', '33': 'pageUp', '34': 'pageDown', '35': 'end', '36': 'home',
@@ -52,7 +55,7 @@ function Footer ( config ) {
     // sanitize
     config = config || {};
 
-    if ( DEBUG ) {
+    if ( DEVELOP ) {
         if ( !config.parent || !(config.parent instanceof Page) ) { throw new Error(__filename + ': wrong or empty config.parent'); }
     }
 
@@ -161,12 +164,12 @@ Footer.prototype.init = function ( config ) {
     this.$menu.style.visibility = 'hidden';
 
     for ( i = 0; i < config.length; i++ ) {
-        if ( config[i].code === keys.menu ) {
+        if ( config[i].code === rc.codes.menu ) {
             tab++;
             break;
         }
     }
-    if ( DEBUG ) {
+    if ( DEVELOP ) {
         if ( config.length - tab > 3 ) { throw new Error(__filename + ': only 4 buttons allowed in footer'); }
     }
     this.tab = config.length - tab >= 0 ? config.length - tab : 0;
@@ -175,7 +178,7 @@ Footer.prototype.init = function ( config ) {
 
     for ( i = 0; i < config.length; i++ ) {
         this.tabs[this.tab].codes[config[i].code] = {action: config[i].action};
-        if ( config[i].code === keys.menu ) { // menu button has only action
+        if ( config[i].code === rc.codes.menu ) { // menu button has only action
             this.$menu.style.visibility = 'inherit';
             continue;
         }

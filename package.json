@@ -16,10 +16,10 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "spa-component": "spasdk/component"
+        "stb-component": "stbsdk/component"
     },
     "devDependencies": {
-        "spa-eslint-config": "spasdk/eslint-config"
+        "mag-eslint-config": "magsdk/eslint-config"
     },
     "keywords": [
         "mag",
