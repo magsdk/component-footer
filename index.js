@@ -116,8 +116,8 @@ function Footer ( config ) {
         var currTab = self.tabs[self.tab];
 
         if ( self.visible ) {
-            if ( currTab.codes[event.code] && typeof currTab.codes[event.code].action === 'function' ) {
-                currTab.codes[event.code].action();
+            if ( currTab.codes[event.keyCode] && typeof currTab.codes[event.keyCode].action === 'function' ) {
+                currTab.codes[event.keyCode].action();
             }
 //            if ( event.code === keys.info && self.$info.style.display !== 'none' ) {
 //                if ( currTab.$body.classList.contains('hidden') ) {
