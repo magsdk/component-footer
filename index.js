@@ -11,15 +11,14 @@ var Component = require('stb-component'),
     Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
     rc        = require('stb-rc'),
-    classes = {
-        '8': 'back', '46': 'delete', '1009': 'channelPrev', '9': 'channelNext', '13': 'ok', '27': 'exit', '38': 'up',
-        '40': 'down', '37': 'left', '39': 'right', '33': 'pageUp', '34': 'pageDown', '35': 'end', '36': 'home',
-        '107': 'volumeUp', '109': 'volumeDown', '112': 'f1', '113': 'f2', '114': 'f3', '115': 'f4', '116': 'refresh',
-        '117': 'frame', '119': 'phone', '120': 'set', '121': 'tv', '122': 'menu', '123': 'web', '2032': 'mic',
-        '2066': 'rewind', '2070': 'forward', '2076': 'app', '2080': 'usbMounted', '2081': 'usbUnmounted',
-        '2082': 'playPause', '2083': 'stop', '2085': 'power', '2087': 'record', '2089': 'info', '2192': 'mute',
-        '2071': 'audio'
-    };
+    classes = {},
+    keyName;
+
+
+// initialize classes
+for ( keyName in rc.codes ) {
+    classes[keyName] = rc.codes[keyName];
+}
 
 
 /**
