@@ -17,7 +17,7 @@ var Component = require('stb-component'),
 
 // initialize classes
 for ( keyName in rc.codes ) {
-    classes[keyName] = rc.codes[keyName];
+    classes[rc.codes[keyName]] = keyName;
 }
 
 
