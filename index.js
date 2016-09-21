@@ -54,7 +54,7 @@ function Footer ( config ) {
     // can't accept focus
     config.focusable = false;
     // set default className if classList property empty or undefined
-    config.className = 'footer ' + (config.className || '');
+    //config.className = 'footer ' + (config.className || '');
     // hide by default
     config.visible = config.visible || false;
     // create centered div
@@ -127,6 +127,9 @@ function Footer ( config ) {
 // inheritance
 Footer.prototype = Object.create(Component.prototype);
 Footer.prototype.constructor = Footer;
+
+// set component name
+Footer.prototype.name = 'mag-component-footer';
 
 
 /**
