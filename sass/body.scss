@@ -27,7 +27,7 @@
 
           &.hidden { display:none; }
 
-          & > .mag-component-button {
+          & > .stb-component-button {
             display: inline-block;
             height:  $footerHeight;
             padding: 0 $footerButtonsPadding 0 $footerButtonsPadding * 0.75;
