@@ -1,0 +1,64 @@
+// @license The MIT License (MIT)
+// @copyright Stanislav Kalashnik <darkpark.main@gmail.com>
+
+@mixin mag-component-footer {
+  width:       $width - 2 * ($safePadding + $pagePadding);
+  height:      $footerHeight;
+  line-height: $footerHeight;
+  position:    absolute;
+  left:        $safePadding + $pagePadding;
+  bottom:      $footerPaddingBottom;
+  display:     table;
+  z-index:     10;
+
+  & > table {
+    vertical-align: middle;
+    text-align:     center;
+
+    & > tr > td {
+      width: $footerHeight;
+
+      &.central {
+        width: $width - ($safePadding + $pagePadding) * 2 - $footerHeight * 2;
+
+        & > .wrapper {
+          height:     $footerHeight;
+          visibility: inherit;
+
+          &.hidden { display:none; }
+
+          & > .mag-component-button {
+            display: inline-block;
+            height:  $footerHeight;
+            padding: 0 $footerButtonsPadding 0 $footerButtonsPadding * 0.75;
+
+            &.hidden { display:none; }
+
+            .title { padding-left: $footerButtonsPadding / 2; }
+          }
+        }
+      }
+
+      .icon {
+        display:    block;
+        text-align: left;
+        background: no-repeat center center;
+
+        &.info { text-align:right; }
+      }
+
+      .iconImg {
+        height:      $footerHeight;
+        line-height: $footerHeight;
+        width:       $footerHeight;
+        text-align:  center;
+        float:       left;
+      }
+
+      .title {
+        display: block;
+        float:   right;
+      }
+    }
+  }
+}
