@@ -18,8 +18,7 @@
     },
     "dependencies": {
         "spa-dom": "spasdk/dom",
-        "stb-keys": "stbsdk/keys",
-        "stb-component-page": "stbsdk/component-page"
+        "stb-keys": "stbsdk/keys"
     },
     "devDependencies": {
         "eslint": "3.*.*",

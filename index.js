@@ -8,7 +8,6 @@
 'use strict';
 
 var Component = require('stb-component'),
-    Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
     keys      = require('stb-keys'),
     classes   = {},
@@ -52,11 +51,6 @@ function Footer ( config ) {
 
     // sanitize
     config = config || {};
-
-    if ( DEVELOP ) {
-        if ( !config.parent || !(config.parent instanceof Page) ) { throw new Error(__filename + ': wrong or empty config.parent'); }
-    }
-
     // can't accept focus
     config.focusable = false;
     // set default className if classList property empty or undefined
