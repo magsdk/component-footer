@@ -10,14 +10,14 @@
 var Component = require('stb-component'),
     Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
-    rc        = require('stb-rc'),
+    keys      = require('stb-keys'),
     classes = {},
     keyName;
 
 
 // initialize classes
-for ( keyName in rc.codes ) {
-    classes[rc.codes[keyName]] = keyName;
+for ( keyName in keys ) {
+    classes[keys[keyName]] = keyName;
 }
 
 
@@ -162,7 +162,7 @@ Footer.prototype.init = function ( config ) {
     this.$menu.style.visibility = 'hidden';
 
     for ( i = 0; i < config.length; i++ ) {
-        if ( config[i].code === rc.codes.menu ) {
+        if ( config[i].code === keys.menu ) {
             tab++;
             break;
         }
@@ -176,7 +176,7 @@ Footer.prototype.init = function ( config ) {
 
     for ( i = 0; i < config.length; i++ ) {
         this.tabs[this.tab].codes[config[i].code] = {action: config[i].action};
-        if ( config[i].code === rc.codes.menu ) { // menu button has only action
+        if ( config[i].code === keys.menu ) { // menu button has only action
             this.$menu.style.visibility = 'inherit';
             continue;
         }
