@@ -11,7 +11,7 @@ var Component = require('stb-component'),
     Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
     keys      = require('stb-keys'),
-    classes = {},
+    classes   = {},
     keyName;
 
 

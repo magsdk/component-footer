@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "spa-dom": "spasdk/dom",
-        "stb-rc": "stbsdk/rc",
+        "stb-keys": "stbsdk/keys",
         "stb-component-page": "stbsdk/component-page"
     },
     "devDependencies": {
