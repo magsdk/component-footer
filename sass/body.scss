@@ -29,7 +29,8 @@
                         display: none;
                     }
 
-                    & > .stb-component-button {
+                    & > div {
+                        @include spa-component-button;
                         display: inline-block;
                         height: $footerHeight;
                         padding: 0 $footerButtonsPadding 0 $footerButtonsPadding * 0.75;

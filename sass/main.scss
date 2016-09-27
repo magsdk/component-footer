@@ -3,6 +3,7 @@
 
 @import "body";
 @import "../node_modules/stb-component/sass/main";
+@import "../node_modules/spa-component-button/sass/body";
 
 .mag-component-footer {
     @include stb-component-release;
