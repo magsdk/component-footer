@@ -77,22 +77,22 @@ function Footer ( config ) {
             ),
             dom.tag('td', {className: 'central'},
                 this.tabs[0].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[1].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[2].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[3].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'stb-component-button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
                 )
             ),
             dom.tag('td', {}//,
