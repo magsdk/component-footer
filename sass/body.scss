@@ -29,8 +29,7 @@
                         display: none;
                     }
 
-                    & > div {
-                        @include spa-component-button;
+                    & > .button {
                         display: inline-block;
                         height: $footerHeight;
                         padding: 0 $footerButtonsPadding 0 $footerButtonsPadding * 0.75;
@@ -43,16 +42,6 @@
                             padding-left: $footerButtonsPadding / 2;
                         }
                     }
-                }
-            }
-
-            .icon {
-                display: block;
-                text-align: left;
-                background: no-repeat center center;
-
-                &.info {
-                    text-align: right;
                 }
             }
 

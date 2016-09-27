@@ -25,42 +25,14 @@
                     visibility: inherit; }
                     .mag-component-footer > table > tr > td.central > .wrapper.hidden {
                         display: none; }
-                    .mag-component-footer > table > tr > td.central > .wrapper > div {
-                        background-color: #dde9ff;
-                        display: inline-table;
-                        height: 46px;
-                        cursor: pointer;
+                    .mag-component-footer > table > tr > td.central > .wrapper > .button {
                         display: inline-block;
                         height: 36px;
                         padding: 0 20px 0 15px; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div:hover {
-                            background-color: #bbd3ff; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div.focus {
-                            background-color: #bbd3ff; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div.click {
-                            background-color: #a8c9ff; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div .icon {
-                            height: 46px;
-                            width: 46px;
-                            display: table-cell;
-                            background: no-repeat center center; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div .text {
-                            display: table-cell;
-                            padding: 6px 12px;
-                            vertical-align: middle;
-                            text-align: center; }
-                            .mag-component-footer > table > tr > td.central > .wrapper > div .text:empty {
-                                padding: 0; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div.hidden {
+                        .mag-component-footer > table > tr > td.central > .wrapper > .button.hidden {
                             display: none; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > div .title {
+                        .mag-component-footer > table > tr > td.central > .wrapper > .button .title {
                             padding-left: 10px; }
-            .mag-component-footer > table > tr > td .icon {
-                display: block;
-                text-align: left;
-                background: no-repeat center center; }
-                .mag-component-footer > table > tr > td .icon.info {
-                    text-align: right; }
             .mag-component-footer > table > tr > td .iconImg {
                 height: 36px;
                 line-height: 36px;
