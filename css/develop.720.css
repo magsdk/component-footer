@@ -25,20 +25,14 @@
                     visibility: inherit; }
                     .mag-component-footer > table > tr > td.central > .wrapper.hidden {
                         display: none; }
-                    .mag-component-footer > table > tr > td.central > .wrapper > .mag-component-button {
+                    .mag-component-footer > table > tr > td.central > .wrapper > .button {
                         display: inline-block;
                         height: 36px;
                         padding: 0 20px 0 15px; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > .mag-component-button.hidden {
+                        .mag-component-footer > table > tr > td.central > .wrapper > .button.hidden {
                             display: none; }
-                        .mag-component-footer > table > tr > td.central > .wrapper > .mag-component-button .title {
+                        .mag-component-footer > table > tr > td.central > .wrapper > .button .title {
                             padding-left: 10px; }
-            .mag-component-footer > table > tr > td .icon {
-                display: block;
-                text-align: left;
-                background: no-repeat center center; }
-                .mag-component-footer > table > tr > td .icon.info {
-                    text-align: right; }
             .mag-component-footer > table > tr > td .iconImg {
                 height: 36px;
                 line-height: 36px;
