@@ -33,7 +33,7 @@
                             display: none; }
                         .mag-component-footer > table > tr > td.central > .wrapper > .button .title {
                             padding-left: 5px; }
-            .mag-component-footer > table > tr > td .iconImg {
+            .mag-component-footer > table > tr > td .iconImg, .mag-component-footer > table > tr > td .iconImg:before {
                 height: 28px;
                 line-height: 28px;
                 width: 28px;

@@ -45,7 +45,7 @@
                 }
             }
 
-            .iconImg {
+            .iconImg, .iconImg:before {
                 height: $footerHeight;
                 line-height: $footerHeight;
                 width: $footerHeight;
