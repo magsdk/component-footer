@@ -1,9 +1,10 @@
 Footer component
 ================
 
-[![Build Status](https://img.shields.io/travis/magsdk/component-footer.svg?style=flat-square)](https://travis-ci.org/magsdk/component-footer)
-[![NPM version](https://img.shields.io/npm/v/mag-component-footer.svg?style=flat-square)](https://www.npmjs.com/package/mag-component-footer)
-[![Dependencies Status](https://img.shields.io/david/magsdk/component-footer.svg?style=flat-square)](https://david-dm.org/magsdk/component-footer)
+[![build status](https://img.shields.io/travis/magsdk/component-footer.svg?style=flat-square)](https://travis-ci.org/magsdk/component-footer)
+[![npm version](https://img.shields.io/npm/v/mag-component-footer.svg?style=flat-square)](https://www.npmjs.com/package/mag-component-footer)
+[![dependencies status](https://img.shields.io/david/magsdk/component-footer.svg?style=flat-square)](https://david-dm.org/magsdk/component-footer)
+[![devDependencies status](https://img.shields.io/david/dev/magsdk/component-footer.svg?style=flat-square)](https://david-dm.org/magsdk/component-footer?type=dev)
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-blue.svg?style=flat-square)](https://gitter.im/DarkPark/magsdk)
 
 
