@@ -17,8 +17,9 @@
         "jsdoc": "jsdoc --destination doc *.js readme.md"
     },
     "dependencies": {
-        "spa-dom": "1.*.*",
-        "stb-keys": "stbsdk/keys"
+        "stb-component": "stbsdk/component",
+        "stb-keys": "stbsdk/keys",
+        "spa-dom": "1.*.*"
     },
     "devDependencies": {
         "eslint": "3.*.*",
