@@ -1,6 +1,6 @@
 {
     "name": "mag-component-footer",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "Base footer implementation.",
     "author": {
         "name": "Stanislav Kalashnik",
