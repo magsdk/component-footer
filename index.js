@@ -8,18 +8,37 @@
 'use strict';
 
 var Component = require('stb-component'),
-    Page      = require('stb-component-page'),
     dom       = require('spa-dom'),
-    rc        = require('stb-rc'),
-    classes = {},
-    keyName;
+    keys      = require('stb-keys'),
+    classes   = {};
 
 
 // initialize classes
-for ( keyName in rc.codes ) {
-    classes[rc.codes[keyName]] = keyName;
-}
-
+classes[keys.f1] = 'theme-icon-rc-f1';
+classes[keys.f2] = 'theme-icon-rc-f2';
+classes[keys.f3] = 'theme-icon-rc-f3';
+classes[keys.f4] = 'theme-icon-rc-f4';
+classes[keys.menu] = 'theme-icon-rc-menu';
+classes[keys.ok] = 'theme-icon-rc-ok';
+classes[keys.info] = 'theme-icon-rc-info';
+classes[keys.playPause] = 'theme-icon-rc-play-pause';
+classes[keys.back] = 'theme-icon-rc-back';
+classes[keys.exit] = 'theme-icon-rc-home';
+classes[keys.keyboard] = 'theme-icon-rc-vk';
+classes[keys.refresh] = 'theme-icon-rc-refresh';
+//classes[keys.channelNext] = 'theme-icon-next';
+//classes[keys.channelPrev] = 'theme-icon-previous';
+//classes[keys.volumeUp] = 'theme-icon-volumeUp';
+//classes[keys.volumeDown] = 'theme-icon-volumeDown';
+//classes[keys.frame] = 'theme-icon-frame';
+//classes[keys.set] = 'theme-icon-set';
+//classes[keys.tv] = 'theme-icon-tv';
+//classes[keys.app] = 'theme-icon-app';
+//classes[keys.rewind] = 'theme-icon-rewind';
+//classes[keys.forward] = 'theme-icon-forward';
+//classes[keys.stop] = 'theme-icon-stop';
+//classes[keys.power] = 'theme-icon-power';
+//classes[keys.mute] = 'theme-icon-mute';
 
 /**
  * Footer.
@@ -27,22 +46,23 @@ for ( keyName in rc.codes ) {
  * @constructor
  * @extends Component
  *
- * @param {Object} config={} init parameters
- * @param {Object} config.parent parent page
- * @param {boolean} [config.visible] visibility flag
- * @param {Array} [config.data] buttons config
- * @param {Object} [config.data.type] button type
- * @param {string} [config.data.title] button title
+ * @param {Object}   config={} init parameters
+ * @param {Object}   config.parent parent page
+ * @param {boolean}  [config.visible] visibility flag
+ * @param {Array}    config.data buttons config
+ * @param {Object}   config.data.code button key code
+ * @param {string}   [config.data.title] button title
+ * @param {string}   [config.data.className] button className
  * @param {Function} [config.data.action] button press (click) action
  *
  * @example
  * page.footer = new Footer({
  *     parent: page,
  *     data: [
- *         {code: 122, action: function () {}},
- *         {code: 112, title: 'stop', action: function () {}},
- *         {code: 113, title: 'start', action: function () {}},
- *         {code: 115, title: 'end', action: function () {}}
+ *         {code: keys.menu, action: function () {}},
+ *         {code: keys.f1, title: 'stop', action: function () {}},
+ *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+ *         {code: keys.f4, title: 'end', action: function () {}}
  *     ]
  * });
  * page.add(page.footer);
@@ -52,15 +72,8 @@ function Footer ( config ) {
 
     // sanitize
     config = config || {};
-
-    if ( DEVELOP ) {
-        if ( !config.parent || !(config.parent instanceof Page) ) { throw new Error(__filename + ': wrong or empty config.parent'); }
-    }
-
     // can't accept focus
     config.focusable = false;
-    // set default className if classList property empty or undefined
-    config.className = 'footer ' + (config.className || '');
     // hide by default
     config.visible = config.visible || false;
     // create centered div
@@ -70,40 +83,36 @@ function Footer ( config ) {
     // parent constructor call
     Component.call(this, config);
 
-    this.tabs = [
-        {$body: null, codes: {}}, {$body: null, codes: {}}, {$body: null, codes: {}}, {$body: null, codes: {}}
-    ];
+    this.tabs = [{codes: {}}, {codes: {}}, {codes: {}}, {codes: {}}];
 
     this.tab = 0;
 
     this.$node.appendChild(dom.tag('table', {},
         dom.tag('tr', {},
             dom.tag('td', {},
-                this.$menu = dom.tag('div', {className: 'icon menu'})
+                this.$menu = dom.tag('div', {className: 'theme-icon theme-icon-rc-menu'})
             ),
             dom.tag('td', {className: 'central'},
                 this.tabs[0].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[1].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[2].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 ),
                 this.tabs[3].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div', {className: 'iconImg'}), dom.tag('div', {className: 'title'}))
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
+                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 )
             ),
-            dom.tag('td', {}//,
-                //this.$info = dom.tag('div', {className: 'icon info'})
-            )
+            dom.tag('td', {})
         )
     ));
 
@@ -115,16 +124,9 @@ function Footer ( config ) {
         var currTab = self.tabs[self.tab];
 
         if ( self.visible ) {
-            if ( currTab.codes[event.keyCode] && typeof currTab.codes[event.keyCode].action === 'function' ) {
-                currTab.codes[event.keyCode].action();
+            if ( currTab.codes[event.code] && typeof currTab.codes[event.code].action === 'function' ) {
+                currTab.codes[event.code].action();
             }
-//            if ( event.code === keys.info && self.$info.style.display !== 'none' ) {
-//                if ( currTab.$body.classList.contains('hidden') ) {
-//                    currTab.$body.classList.remove('hidden');
-//                } else {
-//                    currTab.$body.classList.add('hidden');
-//                }
-//            }
         }
     });
 }
@@ -133,6 +135,9 @@ function Footer ( config ) {
 // inheritance
 Footer.prototype = Object.create(Component.prototype);
 Footer.prototype.constructor = Footer;
+
+// set component name
+Footer.prototype.name = 'mag-component-footer';
 
 
 /**
@@ -145,24 +150,25 @@ Footer.prototype.constructor = Footer;
  *
  * @example
  * page.Footer.init([
- *     {code: 122, action: function () {}},
- *     {code: 112, title: 'stop', action: function () {}},
- *     {code: 113, title: 'start', action: function () {}},
- *     {code: 115, title: 'end', action: function () {}}
+ *     {code: keys.menu, action: function () {}},
+ *     {code: keys.f1, title: 'stop', action: function () {}},
+ *     {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+ *     {code: keys.f4, title: 'end', action: function () {}}
  * ]);
  */
 Footer.prototype.init = function ( config ) {
     var tab = 1,
-    //visible = !this.tabs[this.tab].$body.classList.contains('hidden'),
-        i;
+        i, $tab, $tabChildren;
 
     config = config || [];
 
+    // reset old tab
     this.tabs[this.tab].$body.classList.add('hidden');
     this.$menu.style.visibility = 'hidden';
 
+    // count real buttons number to select corresponding new tab
     for ( i = 0; i < config.length; i++ ) {
-        if ( config[i].code === rc.codes.menu ) {
+        if ( config[i].code === keys.menu ) {
             tab++;
             break;
         }
@@ -171,25 +177,22 @@ Footer.prototype.init = function ( config ) {
         if ( config.length - tab > 3 ) { throw new Error(__filename + ': only 4 buttons allowed in footer'); }
     }
     this.tab = config.length - tab >= 0 ? config.length - tab : 0;
-    this.tabs[this.tab].codes = {}; // reset actions
+    $tab = this.tabs[this.tab]; // current tab shortcut
+    $tab.codes = {}; // reset actions
     tab = 0;
 
     for ( i = 0; i < config.length; i++ ) {
-        this.tabs[this.tab].codes[config[i].code] = {action: config[i].action};
-        if ( config[i].code === rc.codes.menu ) { // menu button has only action
+        $tab.codes[config[i].code] = {action: config[i].action};
+        if ( config[i].code === keys.menu ) { // menu button has only action
             this.$menu.style.visibility = 'inherit';
             continue;
         }
-        this.tabs[this.tab].$body.children[tab].children[0].className = 'iconImg ' + (classes[config[i].code] || '');
-        this.tabs[this.tab].$body.children[tab].children[1].innerText = config[i].title;
+        $tabChildren = $tab.$body.children[tab].children; // shortcut
+        $tabChildren[0].className = 'iconImg ' + (config[i].className || ('theme-icon ' + (classes[config[i].code] || 'theme-icon-warning')));
+        $tabChildren[1].innerText = config[i].title;
         tab++;
     }
-//    if ( tab ) {
-//        this.$info.style.visibility = 'inherit';
-//    } else {
-//        this.$info.style.visibility = 'hidden';
-//    }
-    if ( /*visible &&*/ tab ) { this.tabs[this.tab].$body.classList.remove('hidden'); }
+    if ( tab ) { $tab.$body.classList.remove('hidden'); }
 };
 
 
