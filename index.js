@@ -173,9 +173,13 @@ Footer.prototype.init = function ( config ) {
             break;
         }
     }
+
     if ( DEVELOP ) {
-        if ( config.length - tab > 3 ) { throw new Error(__filename + ': only 4 buttons allowed in footer'); }
+        if ( config.length - tab > 3 ) {
+            throw new Error(__filename + ': only 4 buttons allowed in footer');
+        }
     }
+
     this.tab = config.length - tab >= 0 ? config.length - tab : 0;
     $tab = this.tabs[this.tab]; // current tab shortcut
     $tab.codes = {}; // reset actions
