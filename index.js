@@ -112,7 +112,9 @@ function Footer ( config ) {
                     dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 )
             ),
-            dom.tag('td', {})
+            dom.tag('td', {}/*,
+				this.$info = dom.tag('div', {className: 'theme-icon theme-icon-rc-info'}) */
+			)
         )
     ));
 
@@ -144,9 +146,9 @@ Footer.prototype.name = 'mag-component-footer';
  * Redefine buttons
  *
  * @param {Array} [config] buttons config
- * @param {Object} [config.type] f1 button config, if false button will be hidden
- * @param {Object} [config.title] f1 button title
- * @param {Object} [config.action] f1 button press (click) action
+ * @param {number} [config.code] button key code
+ * @param {Object} [config.title] button title
+ * @param {Object} [config.action] button press (click) action
  *
  * @example
  * page.Footer.init([
