@@ -26,11 +26,11 @@ classes[keys.back] = 'theme-icon-rc-back';
 classes[keys.exit] = 'theme-icon-rc-home';
 classes[keys.keyboard] = 'theme-icon-rc-vk';
 classes[keys.refresh] = 'theme-icon-rc-refresh';
+classes[keys.frame] = 'theme-icon-rc-aspect';
 //classes[keys.channelNext] = 'theme-icon-next';
 //classes[keys.channelPrev] = 'theme-icon-previous';
 //classes[keys.volumeUp] = 'theme-icon-volumeUp';
 //classes[keys.volumeDown] = 'theme-icon-volumeDown';
-//classes[keys.frame] = 'theme-icon-frame';
 //classes[keys.set] = 'theme-icon-set';
 //classes[keys.tv] = 'theme-icon-tv';
 //classes[keys.app] = 'theme-icon-app';
@@ -46,27 +46,37 @@ classes[keys.refresh] = 'theme-icon-rc-refresh';
  * @constructor
  * @extends Component
  *
- * @param {Object}   config={} init parameters
- * @param {Object}   config.parent parent page
- * @param {boolean}  [config.visible] visibility flag
- * @param {Array}    config.data buttons config
- * @param {Object}   config.data.code button key code
- * @param {string}   [config.data.title] button title
- * @param {string}   [config.data.className] button className
- * @param {Function} [config.data.action] button press (click) action
+ * @param {Object}  config={} init parameters
+ * @param {Object}  config.parent parent page
+ * @param {boolean} [config.visible] visibility flag
+ * @param {Object}  [config.data] footer buttons config
+ * @param {Object}  [config.data.left] left button config
+ * @param {Object}  [config.data.middle] middle buttons config
+ * @param {Object}  [config.data.right] right button config
+ * @param {number}  [config.data.middle.code] button key code
+ * @param {Object}  [config.data.middle.title] button title
+ * @param {Object}  [config.data.middle.action] button press (click) action
  *
  * @example
  * page.footer = new Footer({
  *     parent: page,
- *     data: [
- *         {code: keys.menu, action: function () {}},
- *         {code: keys.f1, title: 'stop', action: function () {}},
- *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *         {code: keys.f4, title: 'end', action: function () {}}
- *     ]
+ *     data: {
+ *         left: {
+ *             code: keys.menu, action: function () {}
+ *         },
+ *         middle: [
+ *             {code: 55, action: function () {}},
+ *             {code: keys.f1, title: 'stop', action: function () {}},
+ *             {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+ *             {code: keys.f4, title: 'end', action: function () {}}
+ *         ],
+ *         right: {
+ *             code: 65, action: function () {}
+ *         }
+ *     }
  * });
- * page.add(page.footer);
  */
+
 function Footer ( config ) {
     var self;
 
@@ -90,7 +100,7 @@ function Footer ( config ) {
     this.$node.appendChild(dom.tag('table', {},
         dom.tag('tr', {},
             dom.tag('td', {},
-                this.$menu = dom.tag('div', {className: 'theme-icon theme-icon-rc-menu'})
+                this.$left = dom.tag('div', {className: 'theme-icon'})
             ),
             dom.tag('td', {className: 'central'},
                 this.tabs[0].$body = dom.tag('div', {className: 'wrapper hidden'},
@@ -112,9 +122,9 @@ function Footer ( config ) {
                     dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
                 )
             ),
-            dom.tag('td', {}/*,
-				this.$info = dom.tag('div', {className: 'theme-icon theme-icon-rc-info'}) */
-			)
+            dom.tag('td', {},
+                this.$right = dom.tag('div', {className: 'theme-icon'})
+            )
         )
     ));
 
@@ -145,60 +155,74 @@ Footer.prototype.name = 'mag-component-footer';
 /**
  * Redefine buttons
  *
- * @param {Array} [config] buttons config
- * @param {number} [config.code] button key code
- * @param {Object} [config.title] button title
- * @param {Object} [config.action] button press (click) action
+ * @param {Object} [config] footer buttons config
+ * @param {Object} [config.left] left button config
+ * @param {Object} [config.middle] middle buttons config
+ * @param {Object} [config.right] right button config
+ * @param {number} [config.middle.code] button key code
+ * @param {Object} [config.middle.title] button title
+ * @param {Object} [config.middle.action] button press (click) action
  *
- * @example
- * page.Footer.init([
- *     {code: keys.menu, action: function () {}},
- *     {code: keys.f1, title: 'stop', action: function () {}},
- *     {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *     {code: keys.f4, title: 'end', action: function () {}}
- * ]);
+ * page.Footer.init({
+ *     left: {
+ *         code: keys.menu, action: function () {}
+ *     },
+ *     middle: [
+ *         {code: 55, action: function () {}},
+ *         {code: keys.f1, title: 'stop', action: function () {}},
+ *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+ *         {code: keys.f4, title: 'end', action: function () {}}
+ *     ],
+ *     right: {
+ *         code: 65, action: function () {}
+ *     }
+ * });
+ *
  */
 Footer.prototype.init = function ( config ) {
-    var tab = 1,
-        i, $tab, $tabChildren;
+    var i, $tab, $tabChildren;
 
-    config = config || [];
-
-    // reset old tab
-    this.tabs[this.tab].$body.classList.add('hidden');
-    this.$menu.style.visibility = 'hidden';
-
-    // count real buttons number to select corresponding new tab
-    for ( i = 0; i < config.length; i++ ) {
-        if ( config[i].code === keys.menu ) {
-            tab++;
-            break;
-        }
-    }
+    config = config || {};
 
     if ( DEVELOP ) {
-        if ( config.length - tab > 3 ) {
+        if ( config.middle && config.middle.length > 4 ) {
             throw new Error(__filename + ': only 4 buttons allowed in footer');
         }
     }
 
-    this.tab = config.length - tab >= 0 ? config.length - tab : 0;
+    this.tabs[this.tab].$body.classList.add('hidden'); // hide old tab
+    this.tab = config.middle && config.middle.length ? config.middle.length - 1 : 0;
     $tab = this.tabs[this.tab]; // current tab shortcut
-    $tab.codes = {}; // reset actions
-    tab = 0;
+    $tab.codes = {}; // reset all actions
 
-    for ( i = 0; i < config.length; i++ ) {
-        $tab.codes[config[i].code] = {action: config[i].action};
-        if ( config[i].code === keys.menu ) { // menu button has only action
-            this.$menu.style.visibility = 'inherit';
-            continue;
-        }
-        $tabChildren = $tab.$body.children[tab].children; // shortcut
-        $tabChildren[0].className = 'iconImg ' + (config[i].className || ('theme-icon ' + (classes[config[i].code] || 'theme-icon-warning')));
-        $tabChildren[1].innerText = config[i].title;
-        tab++;
+    // left button
+    if ( config.left ) {
+        $tab.codes[config.left.code] = {action: config.left.action};
+        this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
+        this.$left.style.visibility = 'inherit';
+    } else if ( this.$left.style.visibility !== 'hidden' ) {
+        this.$left.style.visibility = 'hidden';
     }
-    if ( tab ) { $tab.$body.classList.remove('hidden'); }
+
+    // right button
+    if ( config.right ) {
+        $tab.codes[config.right.code] = {action: config.right.action};
+        this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
+        this.$right.style.visibility = 'inherit';
+    } else if ( this.$right.style.visibility !== 'hidden' ) {
+        this.$right.style.visibility = 'hidden';
+    }
+
+    // middle buttons
+    if ( config.middle.length ) {
+        for ( i = 0; i < config.middle.length; i++ ) {
+            $tab.codes[config.middle[i].code] = {action: config.middle[i].action};
+            $tabChildren = $tab.$body.children[i].children; // shortcut
+            $tabChildren[0].className = 'iconImg ' + (config.middle[i].className || ('theme-icon ' + (classes[config.middle[i].code] || 'theme-icon-warning')));
+            $tabChildren[1].innerText = config.middle[i].title || '';
+        }
+        $tab.$body.classList.remove('hidden');
+    }
 };
 
 
