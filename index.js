@@ -214,7 +214,7 @@ Footer.prototype.init = function ( config ) {
     }
 
     // middle buttons
-    if ( config.middle.length ) {
+    if ( config.middle && config.middle.length ) {
         for ( i = 0; i < config.middle.length; i++ ) {
             $tab.codes[config.middle[i].code] = {action: config.middle[i].action};
             $tabChildren = $tab.$body.children[i].children; // shortcut
