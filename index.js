@@ -1,6 +1,6 @@
 /**
  * @license The MIT License (MIT)
- * @copyright Stanislav Kalashnik <darkpark.main@gmail.com>
+ * @copyright Fedotov <bas.jsdev@gmail.com>
  */
 
 /* eslint no-path-concat: 0 */
