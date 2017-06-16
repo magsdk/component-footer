@@ -180,7 +180,7 @@ Footer.prototype.name = 'mag-component-footer';
  *
  */
 Footer.prototype.init = function ( config ) {
-    var i, $tab, $tabChildren;
+    var index, $tab, $tabChildren;
 
     config = config || {};
 
@@ -215,11 +215,12 @@ Footer.prototype.init = function ( config ) {
 
     // middle buttons
     if ( config.middle && config.middle.length ) {
-        for ( i = 0; i < config.middle.length; i++ ) {
-            $tab.codes[config.middle[i].code] = {action: config.middle[i].action};
-            $tabChildren = $tab.$body.children[i].children; // shortcut
-            $tabChildren[0].className = 'iconImg ' + (config.middle[i].className || ('theme-icon ' + (classes[config.middle[i].code] || 'theme-icon-warning')));
-            $tabChildren[1].innerText = config.middle[i].title || '';
+        for ( index = 0; index < config.middle.length; index++ ) {
+            $tab.codes[config.middle[index].code] = {action: config.middle[index].action};
+            $tabChildren = $tab.$body.children[index].children; // shortcut
+            $tabChildren[0].className = 'iconImg ' +
+                (config.middle[index].className || ('theme-icon ' + (classes[config.middle[index].code] || 'theme-icon-warning')));
+            $tabChildren[1].innerText = config.middle[index].title || '';
         }
         $tab.$body.classList.remove('hidden');
     }
