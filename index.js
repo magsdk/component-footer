@@ -27,9 +27,6 @@ classes[keys.keyboard] = 'theme-icon-rc-vk';
 classes[keys.refresh] = 'theme-icon-rc-refresh';
 classes[keys.frame] = 'theme-icon-rc-aspect';
 
-//convert to fast object
-classes = JSON.parse(JSON.stringify(classes));
-
 /**
  * Footer.
  *
