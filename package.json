@@ -18,8 +18,7 @@
     },
     "dependencies": {
         "stb-component": "1.*.*",
-        "stb-keys": "1.*.*",
-        "spa-dom": "1.*.*"
+        "stb-keys": "1.*.*"
     },
     "devDependencies": {
         "eslint": "4.*.*",
