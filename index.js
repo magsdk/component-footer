@@ -8,7 +8,6 @@
 'use strict';
 
 var Component = require('stb-component'),
-    dom       = require('spa-dom'),
     keys      = require('stb-keys'),
     classes   = {};
 
@@ -27,18 +26,6 @@ classes[keys.exit] = 'theme-icon-rc-home';
 classes[keys.keyboard] = 'theme-icon-rc-vk';
 classes[keys.refresh] = 'theme-icon-rc-refresh';
 classes[keys.frame] = 'theme-icon-rc-aspect';
-//classes[keys.channelNext] = 'theme-icon-next';
-//classes[keys.channelPrev] = 'theme-icon-previous';
-//classes[keys.volumeUp] = 'theme-icon-volumeUp';
-//classes[keys.volumeDown] = 'theme-icon-volumeDown';
-//classes[keys.set] = 'theme-icon-set';
-//classes[keys.tv] = 'theme-icon-tv';
-//classes[keys.app] = 'theme-icon-app';
-//classes[keys.rewind] = 'theme-icon-rewind';
-//classes[keys.forward] = 'theme-icon-forward';
-//classes[keys.stop] = 'theme-icon-stop';
-//classes[keys.power] = 'theme-icon-power';
-//classes[keys.mute] = 'theme-icon-mute';
 
 /**
  * Footer.
@@ -77,8 +64,10 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
  * });
  */
 
+/* eslint max-statements: 0 */
 function Footer ( config ) {
-    var self;
+    var currentTab = 0,
+        self = this;
 
     // sanitize
     config = config || {};
@@ -97,40 +86,87 @@ function Footer ( config ) {
 
     this.tab = 0;
 
-    this.$node.appendChild(dom.tag('table', {},
-        dom.tag('tr', {},
-            dom.tag('td', {},
-                this.$left = dom.tag('div', {className: 'theme-icon'})
-            ),
-            dom.tag('td', {className: 'central'},
-                this.tabs[0].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
-                ),
-                this.tabs[1].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
-                ),
-                this.tabs[2].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
-                ),
-                this.tabs[3].$body = dom.tag('div', {className: 'wrapper hidden'},
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'})),
-                    dom.tag('div', {className: 'button'}, dom.tag('div'), dom.tag('div', {className: 'title'}))
-                )
-            ),
-            dom.tag('td', {},
-                this.$right = dom.tag('div', {className: 'theme-icon'})
-            )
-        )
-    ));
+    this.$table = this.$node.appendChild(document.createElement('table'));
+
+    this.$table.insertRow();
+    this.$table.rows[0].insertCell(-1);
+    this.$left = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
+    this.$left.className = 'theme-icon';
+
+    this.$table.rows[0].insertCell(-1);
+    this.$table.rows[0].cells[1].className = 'central';
+
+
+    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.className = 'wrapper hidden';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+
+    ++currentTab;
+    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.className = 'wrapper hidden';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+
+    ++currentTab;
+    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.className = 'wrapper hidden';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+
+    ++currentTab;
+    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.className = 'wrapper hidden';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.className = 'button';
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+
+    this.$table.rows[0].insertCell(-1);
+    this.$right = this.$table.rows[0].cells[2].appendChild(document.createElement('div'));
+    this.$right.className = 'theme-icon';
 
     this.init(config.data);
-
-    self = this;
 
     this.parent.addListener('keydown', function ( event ) {
         var currTab = self.tabs[self.tab];
@@ -188,6 +224,12 @@ Footer.prototype.init = function ( config ) {
         if ( config.middle && config.middle.length > 4 ) {
             throw new Error(__filename + ': only 4 buttons allowed in footer');
         }
+        for ( index = 0; index < config.middle.length; index++ ) {
+            if ( typeof config.middle[index].action !== 'function' ) {
+                throw new Error(__filename + ': action must be a function');
+            }
+            ++index;
+        }
     }
 
     this.tabs[this.tab].$body.classList.add('hidden'); // hide old tab
@@ -217,9 +259,16 @@ Footer.prototype.init = function ( config ) {
     if ( config.middle && config.middle.length ) {
         for ( index = 0; index < config.middle.length; index++ ) {
             $tab.codes[config.middle[index].code] = {action: config.middle[index].action};
+            if ( config.middle[index].disabled ) {
+                $tab.$body.children[index].classList.add('disabled');
+            } else {
+                $tab.$body.children[index].classList.remove('disabled');
+                $tab.$body.children[index].addEventListener('click', config.middle[index].action);
+            }
             $tabChildren = $tab.$body.children[index].children; // shortcut
             $tabChildren[0].className = 'iconImg ' +
                 (config.middle[index].className || ('theme-icon ' + (classes[config.middle[index].code] || 'theme-icon-warning')));
+
             $tabChildren[1].innerText = config.middle[index].title || '';
         }
         $tab.$body.classList.remove('hidden');
