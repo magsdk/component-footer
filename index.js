@@ -171,8 +171,6 @@ function Footer ( config ) {
 
     this.init(config.data);
 
-    self = this;
-
     this.parent.addListener('keydown', function ( event ) {
         var currTab = self.tabs[self.tab];
 
@@ -191,14 +189,6 @@ Footer.prototype.constructor = Footer;
 
 // set component name
 Footer.prototype.name = 'mag-component-footer';
-
-
-/* eslint no-invalid-this: 0 */
-function clickListener () {
-    if ( this.action ) {
-        this.action();
-    }
-}
 
 
 /**
@@ -237,6 +227,12 @@ Footer.prototype.init = function ( config ) {
         if ( config.middle && config.middle.length > 4 ) {
             throw new Error(__filename + ': only 4 buttons allowed in footer');
         }
+        for ( index = 0; index < config.middle.length; index++ ) {
+            if ( typeof config.middle[index].action !== 'function' ) {
+                throw new Error(__filename + ': action must be a function');
+            }
+            ++index;
+        }
     }
 
     this.tabs[this.tab].$body.classList.add('hidden'); // hide old tab
@@ -270,8 +266,7 @@ Footer.prototype.init = function ( config ) {
                 $tab.$body.children[index].classList.add('disabled');
             } else {
                 $tab.$body.children[index].classList.remove('disabled');
-                $tab.$body.children[index].action = config.middle[index].action || null;
-                $tab.$body.children[index].addEventListener('click', clickListener);
+                $tab.$body.children[index].addEventListener('click', config.middle[index].action);
             }
             $tabChildren = $tab.$body.children[index].children; // shortcut
             $tabChildren[0].className = 'iconImg ' +
