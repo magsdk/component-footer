@@ -242,6 +242,7 @@ Footer.prototype.init = function ( config ) {
         $tab.codes[config.left.code] = {action: config.left.action};
         this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
         this.$left.style.visibility = 'inherit';
+        this.$left.onclick = $tab.codes[config.left.code].action;
     } else if ( this.$left.style.visibility !== 'hidden' ) {
         this.$left.style.visibility = 'hidden';
     }
@@ -251,6 +252,7 @@ Footer.prototype.init = function ( config ) {
         $tab.codes[config.right.code] = {action: config.right.action};
         this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
         this.$right.style.visibility = 'inherit';
+        this.$right.onclick = $tab.codes[config.right.code].action;
     } else if ( this.$right.style.visibility !== 'hidden' ) {
         this.$right.style.visibility = 'hidden';
     }
