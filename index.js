@@ -263,7 +263,7 @@ Footer.prototype.init = function ( config ) {
                 $tab.$body.children[index].classList.add('disabled');
             } else {
                 $tab.$body.children[index].classList.remove('disabled');
-                $tab.$body.children[index].addEventListener('click', config.middle[index].action);
+                $tab.$body.children[index].onclick = config.middle[index].action;
             }
             $tabChildren = $tab.$body.children[index].children; // shortcut
             $tabChildren[0].className = 'iconImg ' +
