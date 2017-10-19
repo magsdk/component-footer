@@ -194,12 +194,10 @@ Footer.prototype.name = 'mag-component-footer';
  * @param {Object} [config] footer buttons config
  * @param {Object} [config.left] left button config
  * @param {number} [config.left.code] left button key code
- * @param {boolean} [config.left.disable] left button is disabled
  * @param {Object} [config.left.action] left button press (click) action
  * @param {Object} [config.middle] middle buttons config
  * @param {Object} [config.right] right button config
  * @param {number} [config.right.code] right button key code
- * @param {boolean} [config.right.disable] right button is disabled
  * @param {Object} [config.right.action] right button press (click) action
  * @param {number} [config.middle.code] button key code
  * @param {Object} [config.middle.title] button title
@@ -214,7 +212,6 @@ Footer.prototype.name = 'mag-component-footer';
  *         {code: 55, action: function () {}},
  *         {code: keys.f1, title: 'stop', action: function () {}},
  *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *         {code: keys.f4, title: 'end', action: function () {}},
  *         {code: keys.f4, title: 'end', disabled: true}
  *     ],
  *     right: {
@@ -238,10 +235,10 @@ Footer.prototype.init = function ( config ) {
             }
             ++index;
         }
-        if ( typeof config.left.action !== 'function' ) {
+        if ( config.left && typeof config.left.action !== 'function' ) {
             throw new Error(__filename + ': action must be a function');
         }
-        if ( typeof config.middle.action !== 'function' ) {
+        if ( config.right && typeof config.right.action !== 'function' ) {
             throw new Error(__filename + ': action must be a function');
         }
     }
