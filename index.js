@@ -250,20 +250,28 @@ Footer.prototype.init = function ( config ) {
 
     // left button
     if ( config.left ) {
-        $tab.codes[config.left.code] = {action: config.left.action};
         this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
-        this.$left.style.visibility = 'inherit';
-        this.$left.onclick = config.left.action;
+        if ( config.left.disabled ) {
+            this.$left.classList.add('disabled');
+        } else {
+            $tab.codes[config.left.code] = {action: config.left.action};
+            this.$left.style.visibility = 'inherit';
+            this.$left.onclick = config.left.action;
+        }
     } else if ( this.$left.style.visibility !== 'hidden' ) {
         this.$left.style.visibility = 'hidden';
     }
 
     // right button
     if ( config.right ) {
-        $tab.codes[config.right.code] = {action: config.right.action};
         this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
-        this.$right.style.visibility = 'inherit';
-        this.$right.onclick = config.right.action;
+        if ( config.right.disabled ) {
+            this.$right.classList.add('disabled');
+        } else {
+            $tab.codes[config.right.code] = {action: config.right.action};
+            this.$right.style.visibility = 'inherit';
+            this.$right.onclick = config.right.action;
+        }
     } else if ( this.$right.style.visibility !== 'hidden' ) {
         this.$right.style.visibility = 'hidden';
     }
