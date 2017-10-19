@@ -193,10 +193,17 @@ Footer.prototype.name = 'mag-component-footer';
  *
  * @param {Object} [config] footer buttons config
  * @param {Object} [config.left] left button config
+ * @param {number} [config.left.code] left button key code
+ * @param {boolean} [config.left.disabled] left button is disabled 
+ * @param {Object} [config.left.action] left button press (click) action
  * @param {Object} [config.middle] middle buttons config
  * @param {Object} [config.right] right button config
+ * @param {number} [config.right.code] right button key code
+ * @param {boolean} [config.right.disabled] right button is disabled 
+ * @param {Object} [config.right.action] right button press (click) action
  * @param {number} [config.middle.code] button key code
  * @param {Object} [config.middle.title] button title
+ * @param {boolean} [config.middle.disabled] button is disabled 
  * @param {Object} [config.middle.action] button press (click) action
  *
  * page.Footer.init({
@@ -207,7 +214,7 @@ Footer.prototype.name = 'mag-component-footer';
  *         {code: 55, action: function () {}},
  *         {code: keys.f1, title: 'stop', action: function () {}},
  *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *         {code: keys.f4, title: 'end', action: function () {}}
+ *         {code: keys.f4, title: 'end', disabled: true}
  *     ],
  *     right: {
  *         code: 65, action: function () {}
@@ -225,10 +232,16 @@ Footer.prototype.init = function ( config ) {
             throw new Error(__filename + ': only 4 buttons allowed in footer');
         }
         for ( index = 0; index < config.middle.length; index++ ) {
-            if ( typeof config.middle[index].action !== 'function' ) {
+            if ( typeof config.middle[index].action !== 'function' && !config.middle[index].disabled ) {
                 throw new Error(__filename + ': action must be a function');
             }
             ++index;
+        }
+        if ( config.left && typeof config.left.action !== 'function' && !config.left.disabled ) {
+            throw new Error(__filename + ': action must be a function');
+        }
+        if ( config.right && typeof config.right.action !== 'function' && !config.right.disabled ) {
+            throw new Error(__filename + ': action must be a function');
         }
     }
 
@@ -239,18 +252,28 @@ Footer.prototype.init = function ( config ) {
 
     // left button
     if ( config.left ) {
-        $tab.codes[config.left.code] = {action: config.left.action};
         this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
-        this.$left.style.visibility = 'inherit';
+        if ( config.left.disabled ) {
+            this.$left.classList.add('disabled');
+        } else {
+            $tab.codes[config.left.code] = {action: config.left.action};
+            this.$left.style.visibility = 'inherit';
+            this.$left.onclick = config.left.action;
+        }
     } else if ( this.$left.style.visibility !== 'hidden' ) {
         this.$left.style.visibility = 'hidden';
     }
 
     // right button
     if ( config.right ) {
-        $tab.codes[config.right.code] = {action: config.right.action};
         this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
-        this.$right.style.visibility = 'inherit';
+        if ( config.right.disabled ) {
+            this.$right.classList.add('disabled');
+        } else {
+            $tab.codes[config.right.code] = {action: config.right.action};
+            this.$right.style.visibility = 'inherit';
+            this.$right.onclick = config.right.action;
+        }
     } else if ( this.$right.style.visibility !== 'hidden' ) {
         this.$right.style.visibility = 'hidden';
     }
@@ -263,7 +286,7 @@ Footer.prototype.init = function ( config ) {
                 $tab.$body.children[index].classList.add('disabled');
             } else {
                 $tab.$body.children[index].classList.remove('disabled');
-                $tab.$body.children[index].addEventListener('click', config.middle[index].action);
+                $tab.$body.children[index].onclick = config.middle[index].action;
             }
             $tabChildren = $tab.$body.children[index].children; // shortcut
             $tabChildren[0].className = 'iconImg ' +
