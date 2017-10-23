@@ -194,16 +194,16 @@ Footer.prototype.name = 'mag-component-footer';
  * @param {Object} [config] footer buttons config
  * @param {Object} [config.left] left button config
  * @param {number} [config.left.code] left button key code
- * @param {boolean} [config.left.disabled] left button is disabled 
+ * @param {boolean} [config.left.disabled] left button is disabled
  * @param {Object} [config.left.action] left button press (click) action
  * @param {Object} [config.middle] middle buttons config
  * @param {Object} [config.right] right button config
  * @param {number} [config.right.code] right button key code
- * @param {boolean} [config.right.disabled] right button is disabled 
+ * @param {boolean} [config.right.disabled] right button is disabled
  * @param {Object} [config.right.action] right button press (click) action
  * @param {number} [config.middle.code] button key code
  * @param {Object} [config.middle.title] button title
- * @param {boolean} [config.middle.disabled] button is disabled 
+ * @param {boolean} [config.middle.disabled] button is disabled
  * @param {Object} [config.middle.action] button press (click) action
  *
  * page.Footer.init({
@@ -231,11 +231,13 @@ Footer.prototype.init = function ( config ) {
         if ( config.middle && config.middle.length > 4 ) {
             throw new Error(__filename + ': only 4 buttons allowed in footer');
         }
-        for ( index = 0; index < config.middle.length; index++ ) {
-            if ( typeof config.middle[index].action !== 'function' && !config.middle[index].disabled ) {
-                throw new Error(__filename + ': action must be a function');
+        if ( config.middle && Array.isArray(config.middle) ) {
+            for ( index = 0; index < config.middle.length; index++ ) {
+                if ( typeof config.middle[index].action !== 'function' && !config.middle[index].disabled ) {
+                    throw new Error(__filename + ': action must be a function');
+                }
+                ++index;
             }
-            ++index;
         }
         if ( config.left && typeof config.left.action !== 'function' && !config.left.disabled ) {
             throw new Error(__filename + ': action must be a function');
