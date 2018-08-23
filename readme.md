@@ -20,7 +20,7 @@ npm install mag-component-footer
 
 ## Usage ##
 
-Add the singleton to the scope:
+Add the constructor to the scope:
 
 ```js
 var Footer = require('mag-component-footer');
