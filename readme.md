@@ -26,6 +26,45 @@ Add the singleton to the scope:
 var footer = require('mag-component-footer');
 ```
 
+Create instance with custom config:
+
+```js
+var footer = new Footer({
+    parent: page,
+    data: {
+        left: {
+            code: keys.menu, action: function () {}
+        },
+        middle: [
+            {
+                code: 55,
+                action: function () {}
+            },
+            {
+                code: keys.f1,
+                title: 'stop',
+                action: function () {}
+            },
+            {
+                code: 9000,
+                className: 'customIcon',
+                title: 'start',
+                action: function () {}
+            },
+            {
+                code: keys.f4,
+                title: 'end',
+                action: function () {}
+            }
+        ],
+        right: {
+            code: 65,
+            action: function () {}
+        }
+    }
+});
+```
+
 
 ## Development mode ##
 
