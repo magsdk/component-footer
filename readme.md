@@ -20,10 +20,85 @@ npm install mag-component-footer
 
 ## Usage ##
 
-Add the singleton to the scope:
+Add the constructor to the scope:
 
 ```js
-var footer = require('mag-component-footer');
+var Footer = require('mag-component-footer');
+```
+
+Create instance with custom config:
+
+```js
+var footer = new Footer({
+    parent: page,
+    data: {
+        left: {
+            code: keys.menu, action: function () {}
+        },
+        middle: [
+            {
+                code: 55,
+                action: function () {}
+            },
+            {
+                code: keys.f1,
+                title: 'stop',
+                action: function () {}
+            },
+            {
+                code: 9000,
+                className: 'customIcon',
+                title: 'start',
+                action: function () {}
+            },
+            {
+                code: keys.f4,
+                title: 'end',
+                action: function () {}
+            }
+        ],
+        right: {
+            code: 65,
+            action: function () {}
+        }
+    }
+});
+```
+
+To change footer after creation:
+
+```js
+footer.init({
+    left: {
+        code: keys.menu,
+        action: function () {}
+    },
+    middle: [
+        {
+            code: 55,
+            action: function () {}
+        },
+        {
+            code: keys.f1, 
+            title: 'stop', 
+            action: function () {}
+        },
+        {
+            code: 9000,
+            className: 'customIcon',
+            title: 'start',
+            action: function () {}
+        },
+        {
+            code: keys.f4, 
+            title: 'end', 
+            disabled: true
+        }
+    ],
+    right: {
+        code: 65, action: function () {}
+    }
+});
 ```
 
 
@@ -34,8 +109,8 @@ var footer = require('mag-component-footer');
 
 ## Contribution ##
 
-If you have any problem or suggestion please open an issue [here](https://github.com/magsdk/component-footer/issues).
-Pull requests are welcomed with respect to the [JavaScript Code Style](https://github.com/DarkPark/jscs).
+If you have any problems or suggestions please open an [issue](https://github.com/magsdk/component-footer/issues)
+according to the contribution [rules](.github/contributing.md).
 
 
 ## License ##

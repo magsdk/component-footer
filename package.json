@@ -1,6 +1,6 @@
 {
     "name": "mag-component-footer",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "description": "Base footer implementation.",
     "author": {
         "name": "Stanislav Kalashnik",
@@ -8,24 +8,25 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/magsdk/component-footer"
+        "url": "https://github.com/magsdk/component-footer.git"
     },
     "scripts": {
         "sass": "node-sass --indent-width 4 --include-path ../../.. sass/develop.480.scss css/develop.480.css && node-sass --indent-width 4 --include-path ../../.. sass/release.480.scss css/release.480.css && node-sass --indent-width 4 --include-path ../../.. sass/develop.576.scss css/develop.576.css && node-sass --indent-width 4 --include-path ../../.. sass/release.576.scss css/release.576.css && node-sass --indent-width 4 --include-path ../../.. sass/develop.720.scss css/develop.720.css && node-sass --indent-width 4 --include-path ../../.. sass/release.720.scss css/release.720.css && node-sass --indent-width 4 --include-path ../../.. sass/develop.1080.scss css/develop.1080.css && node-sass --indent-width 4 --include-path ../../.. sass/release.1080.scss css/release.1080.css",
-        "lint": "eslint .",
+        "lint": "eslint --ignore-pattern '/docs/' .",
         "test": "npm run lint",
-        "jsdoc": "jsdoc --destination doc *.js readme.md"
+        "jsdoc": "jsdoc --destination docs *.js readme.md"
     },
     "dependencies": {
-        "stb-component": "1.*.*",
-        "stb-keys": "1.*.*"
+        "stb-component": "^1.4.1",
+        "stb-keys": "^1.4.4"
     },
     "devDependencies": {
-        "eslint": "4.*.*",
-        "mag-eslint-config": "1.*.*"
+        "jsdoc": "^3.5.5",
+        "mag-eslint": "^1.0.1"
     },
     "keywords": [
         "mag",
+        "sdk",
         "magsdk",
         "framework",
         "visual",
