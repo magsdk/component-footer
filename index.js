@@ -82,7 +82,12 @@ function Footer ( config ) {
     // parent constructor call
     Component.call(this, config);
 
-    this.tabs = [{codes: {}}, {codes: {}}, {codes: {}}, {codes: {}}];
+    this.tabs = [
+        {codes: {}},
+        {codes: {}},
+        {codes: {}},
+        {codes: {}}
+    ];
 
     this.tab = 0;
 
@@ -247,10 +252,13 @@ Footer.prototype.init = function ( config ) {
         }
     }
 
-    this.tabs[this.tab].$body.classList.add('hidden'); // hide old tab
+    // hide old tab
+    this.tabs[this.tab].$body.classList.add('hidden');
     this.tab = config.middle && config.middle.length ? config.middle.length - 1 : 0;
-    $tab = this.tabs[this.tab]; // current tab shortcut
-    $tab.codes = {}; // reset all actions
+    // current tab shortcut
+    $tab = this.tabs[this.tab];
+    // reset all actions
+    $tab.codes = {};
 
     // left button
     if ( config.left ) {
@@ -260,7 +268,11 @@ Footer.prototype.init = function ( config ) {
         } else {
             $tab.codes[config.left.code] = {action: config.left.action};
             this.$left.style.visibility = 'inherit';
-            this.$left.onclick = config.left.action;
+            this.$left.onclick = function () {
+                if ( typeof config.left.action === 'function' ) {
+                    config.left.action();
+                }
+            };
         }
     } else if ( this.$left.style.visibility !== 'hidden' ) {
         this.$left.style.visibility = 'hidden';
@@ -274,10 +286,22 @@ Footer.prototype.init = function ( config ) {
         } else {
             $tab.codes[config.right.code] = {action: config.right.action};
             this.$right.style.visibility = 'inherit';
-            this.$right.onclick = config.right.action;
+            this.$right.onclick = function () {
+                if ( typeof config.right.action === 'function' ) {
+                    config.right.action();
+                }
+            };
         }
     } else if ( this.$right.style.visibility !== 'hidden' ) {
         this.$right.style.visibility = 'hidden';
+    }
+
+    function addClick ( ind ) {
+        return function () {
+            if ( typeof config.middle[ind].action === 'function' ) {
+                config.middle[ind].action();
+            }
+        };
     }
 
     // middle buttons
@@ -288,9 +312,10 @@ Footer.prototype.init = function ( config ) {
                 $tab.$body.children[index].classList.add('disabled');
             } else {
                 $tab.$body.children[index].classList.remove('disabled');
-                $tab.$body.children[index].onclick = config.middle[index].action;
+                $tab.$body.children[index].onclick = addClick(index);
             }
-            $tabChildren = $tab.$body.children[index].children; // shortcut
+            // shortcut
+            $tabChildren = $tab.$body.children[index].children;
             $tabChildren[0].className = 'iconImg ' +
                 (config.middle[index].className || ('theme-icon ' + (classes[config.middle[index].code] || 'theme-icon-warning')));
 
