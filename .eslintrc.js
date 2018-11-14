@@ -8,5 +8,10 @@
 // public
 module.exports = {
     // base rules
-    extends: require.resolve('mag-eslint')
+    extends: require.resolve('mag-eslint'),
+
+    rules: {
+        // component has quite a lot of checks for incorrect params
+        complexity: 0
+    }
 };
