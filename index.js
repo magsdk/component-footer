@@ -43,6 +43,10 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
  * @param {number}  [config.data.middle.code] button key code
  * @param {Object}  [config.data.middle.title] button title
  * @param {Object}  [config.data.middle.action] button press (click) action
+ * @param {Object}  [config.data.label] button config (for remote control with long press)
+ * @param {number}  [config.data.label.code] button key code
+ * @param {Object}  [config.data.label.title] button title
+ * @param {Object}  [config.data.label.action] button press (click) action
  *
  * @example
  * page.footer = new Footer({
@@ -59,6 +63,9 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
  *         ],
  *         right: {
  *             code: 65, action: function () {}
+ *         },
+ *         label: {
+ *             code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}
  *         }
  *     }
  * });
@@ -67,7 +74,7 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
 /* eslint max-statements: 0 */
 function Footer ( config ) {
     var currentTab = 0,
-        self = this;
+        self       = this;
 
     // sanitize
     config = config || {};
@@ -92,17 +99,23 @@ function Footer ( config ) {
     this.tab = 0;
 
     this.$table = this.$node.appendChild(document.createElement('table'));
-
     this.$table.insertRow();
     this.$table.rows[0].insertCell(-1);
-    this.$left = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
-    this.$left.className = 'theme-icon';
 
-    this.$table.rows[0].insertCell(-1);
-    this.$table.rows[0].cells[1].className = 'central';
+    if ( PLATFORM !== 'ANDROID-STB' ) {
+        this.$table.rows[0].insertCell(-1);
+        this.$table.rows[0].insertCell(-1);
 
+        this.$left = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
+        this.$left.className = 'theme-icon';
 
-    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        this.$table.rows[0].cells[1].className = 'central';
+        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    } else {
+        this.$table.rows[0].cells[0].className = 'central';
+        this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
+    }
+
     this.tabs[currentTab].$body.className = 'wrapper hidden';
     this.tabs[currentTab].$body.appendChild(document.createElement('div'));
     this.tabs[currentTab].$body.lastChild.className = 'button';
@@ -110,66 +123,68 @@ function Footer ( config ) {
     this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
     this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
 
-    ++currentTab;
-    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.className = 'wrapper hidden';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    if ( PLATFORM !== 'ANDROID-STB' ) {
+        ++currentTab;
+        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.className = 'wrapper hidden';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
 
-    ++currentTab;
-    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.className = 'wrapper hidden';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        ++currentTab;
+        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.className = 'wrapper hidden';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
 
-    ++currentTab;
-    this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.className = 'wrapper hidden';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        ++currentTab;
+        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.className = 'wrapper hidden';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.className = 'button';
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
+        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
 
-    this.$table.rows[0].insertCell(-1);
-    this.$right = this.$table.rows[0].cells[2].appendChild(document.createElement('div'));
-    this.$right.className = 'theme-icon';
+
+        this.$right = this.$table.rows[0].cells[2].appendChild(document.createElement('div'));
+        this.$right.className = 'theme-icon';
+    }
 
     this.init(config.data);
 
@@ -210,6 +225,10 @@ Footer.prototype.name = 'mag-component-footer';
  * @param {Object} [config.middle.title] button title
  * @param {boolean} [config.middle.disabled] button is disabled
  * @param {Object} [config.middle.action] button press (click) action
+ * @param {Object} [config.label] button config
+ * @param {number} [config.label.code] button key code
+ * @param {Object} [config.label.title] button title
+ * @param {Object} [config.label.action] button press (click) action
  *
  * page.Footer.init({
  *     left: {
@@ -227,7 +246,7 @@ Footer.prototype.name = 'mag-component-footer';
  * });
  *
  */
-Footer.prototype.init = function ( config ) {
+Footer.prototype.initStandardMode = function ( config ) {
     var index, $tab, $tabChildren;
 
     config = config || {};
@@ -322,6 +341,95 @@ Footer.prototype.init = function ( config ) {
             $tabChildren[1].innerText = config.middle[index].title || '';
         }
         $tab.$body.classList.remove('hidden');
+    }
+};
+
+if ( PLATFORM === 'ANDROID-STB' ) {
+    /**
+     * Redefine buttons for android-stb platform
+     *
+     * @param {Object} [config] footer config
+     * @param {Object} [config.label] button config
+     * @param {number} [config.label.code] button key code
+     * @param {Object} [config.label.title] button title
+     * @param {Object} [config.label.action] button press (click) action
+     *
+     * initLongPressMode({
+     *     label: {code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}}
+     * });
+     *
+     */
+    Footer.prototype.initLongPressMode = function ( config ) {
+        var $tab, $tabChildren;
+
+        config = config || {};
+
+        // current tab shortcut
+        $tab = this.tabs[0];
+        // reset
+        $tab.codes = {};
+        $tab.$body.classList.add('hidden');
+
+        if ( config.label && typeof config.label.action === 'function' ) {
+            // label button
+            $tab.codes[config.label.code] = {action: config.label.action};
+            $tab.$body.children[0].onclick = function () {
+                if ( typeof config.label.action === 'function' ) {
+                    config.label.action();
+                }
+            };
+            // shortcut
+            $tabChildren = $tab.$body.children[0].children;
+            $tabChildren[0].className = '';
+            $tabChildren[1].innerText = config.label.title || '';
+
+            $tab.$body.classList.remove('hidden');
+        }
+    };
+}
+
+/**
+ * Redefine buttons
+ *
+ * @param {Object} [config] footer buttons config
+ * @param {Object} [config.left] left button config
+ * @param {number} [config.left.code] left button key code
+ * @param {boolean} [config.left.disabled] left button is disabled
+ * @param {Object} [config.left.action] left button press (click) action
+ * @param {Object} [config.middle] middle buttons config
+ * @param {Object} [config.right] right button config
+ * @param {number} [config.right.code] right button key code
+ * @param {boolean} [config.right.disabled] right button is disabled
+ * @param {Object} [config.right.action] right button press (click) action
+ * @param {number} [config.middle.code] button key code
+ * @param {Object} [config.middle.title] button title
+ * @param {boolean} [config.middle.disabled] button is disabled
+ * @param {Object} [config.middle.action] button press (click) action
+ *
+ * page.Footer.init({
+ *     left: {
+ *         code: keys.menu, action: function () {}
+ *     },
+ *     middle: [
+ *         {code: 55, action: function () {}},
+ *         {code: keys.f1, title: 'stop', action: function () {}},
+ *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+ *         {code: keys.f4, title: 'end', disabled: true}
+ *     ],
+ *     right: {
+ *         code: 65, action: function () {}
+ *     },
+ *     label: {
+ *         code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}
+ *     }
+ * });
+ *
+ */
+Footer.prototype.init = function ( config ) {
+    if ( PLATFORM === 'ANDROID-STB' ) {
+        this.initLongPressMode(config);
+    } else {
+        this.initStandardMode(config);
     }
 };
 
