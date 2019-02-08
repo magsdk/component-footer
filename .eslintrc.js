@@ -13,5 +13,9 @@ module.exports = {
     rules: {
         // component has quite a lot of checks for incorrect params
         complexity: 0
+    },
+
+    globals: {
+        TARGET: false
     }
 };
