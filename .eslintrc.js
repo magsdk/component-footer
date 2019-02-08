@@ -16,6 +16,6 @@ module.exports = {
     },
 
     globals: {
-        PLATFORM: false
+        TARGET: false
     }
 };

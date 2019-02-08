@@ -103,10 +103,7 @@ function Footer ( config ) {
     this.$table.insertRow();
     this.$table.rows[0].insertCell(-1);
 
-    if ( PLATFORM === 'ANDROID-STB' ) {
-        this.$table.rows[0].cells[0].className = 'central';
-        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
-    } else {
+    if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
         this.$table.rows[0].insertCell(-1);
         this.$table.rows[0].insertCell(-1);
 
@@ -115,6 +112,9 @@ function Footer ( config ) {
 
         this.$table.rows[0].cells[1].className = 'central';
         $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+    } else {
+        this.$table.rows[0].cells[0].className = 'central';
+        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
     }
 
     $body.className = 'wrapper hidden';
@@ -124,7 +124,7 @@ function Footer ( config ) {
     $body.lastChild.appendChild(document.createElement('div'));
     $body.lastChild.lastChild.className = 'title';
 
-    if ( PLATFORM !== 'ANDROID-STB' ) {
+    if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
         $body = this.tabs[++currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
         $body.className = 'wrapper hidden';
         $body.appendChild(document.createElement('div'));
@@ -206,49 +206,7 @@ Footer.prototype.constructor = Footer;
 Footer.prototype.name = 'mag-component-footer';
 
 
-if ( PLATFORM === 'ANDROID-STB' ) {
-    /**
-     * Redefine buttons for android-stb platform
-     *
-     * @param {Object} [config] - footer config
-     * @param {Object} [config.label] - button config
-     * @param {number} [config.label.code] - button key code
-     * @param {Object} [config.label.title] - button title
-     * @param {Object} [config.label.action] - button press (click) action
-     *
-     * initLongPressMode({
-     *     label: {code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}}
-     * });
-     *
-     */
-    Footer.prototype.init = function ( config ) {
-        var $tab, $tabChildren;
-
-        config = config || {};
-
-        // current tab shortcut
-        $tab = this.tabs[0];
-        // reset
-        $tab.codes = {};
-        $tab.$body.classList.add('hidden');
-
-        if ( config.label && typeof config.label.action === 'function' ) {
-            // label button
-            $tab.codes[config.label.code] = {action: config.label.action};
-            $tab.$body.children[0].onclick = function () {
-                if ( typeof config.label.action === 'function' ) {
-                    config.label.action();
-                }
-            };
-            // shortcut
-            $tabChildren = $tab.$body.children[0].children;
-            $tabChildren[0].className = '';
-            $tabChildren[1].innerText = config.label.title || '';
-
-            $tab.$body.classList.remove('hidden');
-        }
-    };
-} else {
+if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
     /**
      * Redefine buttons
      *
@@ -381,6 +339,48 @@ if ( PLATFORM === 'ANDROID-STB' ) {
 
                 $tabChildren[1].innerText = config.middle[index].title || '';
             }
+            $tab.$body.classList.remove('hidden');
+        }
+    };
+} else {
+    /**
+     * Redefine buttons for android
+     *
+     * @param {Object} [config] - footer config
+     * @param {Object} [config.label] - button config
+     * @param {number} [config.label.code] - button key code
+     * @param {Object} [config.label.title] - button title
+     * @param {Object} [config.label.action] - button press (click) action
+     *
+     * initLongPressMode({
+     *     label: {code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}}
+     * });
+     *
+     */
+    Footer.prototype.init = function ( config ) {
+        var $tab, $tabChildren;
+
+        config = config || {};
+
+        // current tab shortcut
+        $tab = this.tabs[0];
+        // reset
+        $tab.codes = {};
+        $tab.$body.classList.add('hidden');
+
+        if ( config.label && typeof config.label.action === 'function' ) {
+            // label button
+            $tab.codes[config.label.code] = {action: config.label.action};
+            $tab.$body.children[0].onclick = function () {
+                if ( typeof config.label.action === 'function' ) {
+                    config.label.action();
+                }
+            };
+            // shortcut
+            $tabChildren = $tab.$body.children[0].children;
+            $tabChildren[0].className = '';
+            $tabChildren[1].innerText = config.label.title || '';
+
             $tab.$body.classList.remove('hidden');
         }
     };
