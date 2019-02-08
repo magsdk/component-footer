@@ -33,20 +33,20 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
  * @constructor
  * @extends Component
  *
- * @param {Object}  config={} init parameters
- * @param {Object}  config.parent parent page
- * @param {boolean} [config.visible] visibility flag
- * @param {Object}  [config.data] footer buttons config
- * @param {Object}  [config.data.left] left button config
- * @param {Object}  [config.data.middle] middle buttons config
- * @param {Object}  [config.data.right] right button config
- * @param {number}  [config.data.middle.code] button key code
- * @param {Object}  [config.data.middle.title] button title
- * @param {Object}  [config.data.middle.action] button press (click) action
- * @param {Object}  [config.data.label] button config (for remote control with long press)
- * @param {number}  [config.data.label.code] button key code
- * @param {Object}  [config.data.label.title] button title
- * @param {Object}  [config.data.label.action] button press (click) action
+ * @param {Object}  config={} - init parameters
+ * @param {Object}  config.parent - parent page
+ * @param {boolean} [config.visible] - visibility flag
+ * @param {Object}  [config.data] - footer buttons config
+ * @param {Object}  [config.data.left] - left button config
+ * @param {Object}  [config.data.middle] - middle buttons config
+ * @param {Object}  [config.data.right] - right button config
+ * @param {number}  [config.data.middle.code] - button key code
+ * @param {Object}  [config.data.middle.title] - button title
+ * @param {Object}  [config.data.middle.action] - button press (click) action
+ * @param {Object}  [config.data.label] - button config (for remote control with long press)
+ * @param {number}  [config.data.label.code] - button key code
+ * @param {Object}  [config.data.label.title] - button title
+ * @param {Object}  [config.data.label.action] - button press (click) action
  *
  * @example
  * page.footer = new Footer({
@@ -103,7 +103,10 @@ function Footer ( config ) {
     this.$table.insertRow();
     this.$table.rows[0].insertCell(-1);
 
-    if ( PLATFORM !== 'ANDROID-STB' ) {
+    if ( PLATFORM === 'ANDROID-STB' ) {
+        this.$table.rows[0].cells[0].className = 'central';
+        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
+    } else {
         this.$table.rows[0].insertCell(-1);
         this.$table.rows[0].insertCell(-1);
 
@@ -112,9 +115,6 @@ function Footer ( config ) {
 
         this.$table.rows[0].cells[1].className = 'central';
         $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-    } else {
-        this.$table.rows[0].cells[0].className = 'central';
-        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
     }
 
     $body.className = 'wrapper hidden';
@@ -210,11 +210,11 @@ if ( PLATFORM === 'ANDROID-STB' ) {
     /**
      * Redefine buttons for android-stb platform
      *
-     * @param {Object} [config] footer config
-     * @param {Object} [config.label] button config
-     * @param {number} [config.label.code] button key code
-     * @param {Object} [config.label.title] button title
-     * @param {Object} [config.label.action] button press (click) action
+     * @param {Object} [config] - footer config
+     * @param {Object} [config.label] - button config
+     * @param {number} [config.label.code] - button key code
+     * @param {Object} [config.label.title] - button title
+     * @param {Object} [config.label.action] - button press (click) action
      *
      * initLongPressMode({
      *     label: {code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}}
@@ -252,24 +252,24 @@ if ( PLATFORM === 'ANDROID-STB' ) {
     /**
      * Redefine buttons
      *
-     * @param {Object} [config] footer buttons config
-     * @param {Object} [config.left] left button config
-     * @param {number} [config.left.code] left button key code
-     * @param {boolean} [config.left.disabled] left button is disabled
-     * @param {Object} [config.left.action] left button press (click) action
-     * @param {Object} [config.middle] middle buttons config
-     * @param {Object} [config.right] right button config
-     * @param {number} [config.right.code] right button key code
-     * @param {boolean} [config.right.disabled] right button is disabled
-     * @param {Object} [config.right.action] right button press (click) action
-     * @param {number} [config.middle.code] button key code
-     * @param {Object} [config.middle.title] button title
-     * @param {boolean} [config.middle.disabled] button is disabled
-     * @param {Object} [config.middle.action] button press (click) action
-     * @param {Object} [config.label] button config
-     * @param {number} [config.label.code] button key code
-     * @param {Object} [config.label.title] button title
-     * @param {Object} [config.label.action] button press (click) action
+     * @param {Object} [config] - footer buttons config
+     * @param {Object} [config.left] - left button config
+     * @param {number} [config.left.code] - left button key code
+     * @param {boolean} [config.left.disabled] - left button is disabled
+     * @param {Object} [config.left.action] - left button press (click) action
+     * @param {Object} [config.middle] - middle buttons config
+     * @param {Object} [config.right] - right button config
+     * @param {number} [config.right.code] - right button key code
+     * @param {boolean} [config.right.disabled] - right button is disabled
+     * @param {Object} [config.right.action] - right button press (click) action
+     * @param {number} [config.middle.code] - button key code
+     * @param {Object} [config.middle.title] - button title
+     * @param {boolean} [config.middle.disabled] - button is disabled
+     * @param {Object} [config.middle.action] - button press (click) action
+     * @param {Object} [config.label] - button config
+     * @param {number} [config.label.code] - button key code
+     * @param {Object} [config.label.title] - button title
+     * @param {Object} [config.label.action] - button press (click) action
      *
      * page.Footer.init({
      *     left: {
