@@ -74,7 +74,8 @@ classes[keys.frame] = 'theme-icon-rc-aspect';
 /* eslint max-statements: 0 */
 function Footer ( config ) {
     var currentTab = 0,
-        self       = this;
+        self       = this,
+        $body;
 
     // sanitize
     config = config || {};
@@ -110,76 +111,73 @@ function Footer ( config ) {
         this.$left.className = 'theme-icon';
 
         this.$table.rows[0].cells[1].className = 'central';
-        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
     } else {
         this.$table.rows[0].cells[0].className = 'central';
-        this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
+        $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
     }
 
-    this.tabs[currentTab].$body.className = 'wrapper hidden';
-    this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.className = 'button';
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-    this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+    $body.className = 'wrapper hidden';
+    $body.appendChild(document.createElement('div'));
+    $body.lastChild.className = 'button';
+    $body.lastChild.appendChild(document.createElement('div'));
+    $body.lastChild.appendChild(document.createElement('div'));
+    $body.lastChild.lastChild.className = 'title';
 
     if ( PLATFORM !== 'ANDROID-STB' ) {
-        ++currentTab;
-        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.className = 'wrapper hidden';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        $body = this.tabs[++currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        $body.className = 'wrapper hidden';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
 
-        ++currentTab;
-        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.className = 'wrapper hidden';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        $body = this.tabs[++currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        $body.className = 'wrapper hidden';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
 
-        ++currentTab;
-        this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.className = 'wrapper hidden';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
-        this.tabs[currentTab].$body.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.className = 'button';
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.appendChild(document.createElement('div'));
-        this.tabs[currentTab].$body.lastChild.lastChild.className = 'title';
+        $body = this.tabs[++currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
+        $body.className = 'wrapper hidden';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
+        $body.appendChild(document.createElement('div'));
+        $body.lastChild.className = 'button';
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
 
 
         this.$right = this.$table.rows[0].cells[2].appendChild(document.createElement('div'));
@@ -208,142 +206,6 @@ Footer.prototype.constructor = Footer;
 Footer.prototype.name = 'mag-component-footer';
 
 
-/**
- * Redefine buttons
- *
- * @param {Object} [config] footer buttons config
- * @param {Object} [config.left] left button config
- * @param {number} [config.left.code] left button key code
- * @param {boolean} [config.left.disabled] left button is disabled
- * @param {Object} [config.left.action] left button press (click) action
- * @param {Object} [config.middle] middle buttons config
- * @param {Object} [config.right] right button config
- * @param {number} [config.right.code] right button key code
- * @param {boolean} [config.right.disabled] right button is disabled
- * @param {Object} [config.right.action] right button press (click) action
- * @param {number} [config.middle.code] button key code
- * @param {Object} [config.middle.title] button title
- * @param {boolean} [config.middle.disabled] button is disabled
- * @param {Object} [config.middle.action] button press (click) action
- * @param {Object} [config.label] button config
- * @param {number} [config.label.code] button key code
- * @param {Object} [config.label.title] button title
- * @param {Object} [config.label.action] button press (click) action
- *
- * page.Footer.init({
- *     left: {
- *         code: keys.menu, action: function () {}
- *     },
- *     middle: [
- *         {code: 55, action: function () {}},
- *         {code: keys.f1, title: 'stop', action: function () {}},
- *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *         {code: keys.f4, title: 'end', disabled: true}
- *     ],
- *     right: {
- *         code: 65, action: function () {}
- *     }
- * });
- *
- */
-Footer.prototype.initStandardMode = function ( config ) {
-    var index, $tab, $tabChildren;
-
-    config = config || {};
-
-    if ( DEVELOP ) {
-        if ( config.middle && config.middle.length > 4 ) {
-            throw new Error(__filename + ': only 4 buttons allowed in footer');
-        }
-        if ( config.middle && Array.isArray(config.middle) ) {
-            for ( index = 0; index < config.middle.length; index++ ) {
-                if ( typeof config.middle[index].action !== 'function' && !config.middle[index].disabled ) {
-                    throw new Error(__filename + ': action must be a function');
-                }
-                ++index;
-            }
-        }
-        if ( config.left && typeof config.left.action !== 'function' && !config.left.disabled ) {
-            throw new Error(__filename + ': action must be a function');
-        }
-        if ( config.right && typeof config.right.action !== 'function' && !config.right.disabled ) {
-            throw new Error(__filename + ': action must be a function');
-        }
-    }
-
-    // hide old tab
-    this.tabs[this.tab].$body.classList.add('hidden');
-    this.tab = config.middle && config.middle.length ? config.middle.length - 1 : 0;
-    // current tab shortcut
-    $tab = this.tabs[this.tab];
-    // reset all actions
-    $tab.codes = {};
-
-    // left button
-    if ( config.left ) {
-        this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
-        if ( config.left.disabled ) {
-            this.$left.classList.add('disabled');
-        } else {
-            $tab.codes[config.left.code] = {action: config.left.action};
-            this.$left.style.visibility = 'inherit';
-            this.$left.onclick = function () {
-                if ( typeof config.left.action === 'function' ) {
-                    config.left.action();
-                }
-            };
-        }
-    } else if ( this.$left.style.visibility !== 'hidden' ) {
-        this.$left.style.visibility = 'hidden';
-    }
-
-    // right button
-    if ( config.right ) {
-        this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
-        if ( config.right.disabled ) {
-            this.$right.classList.add('disabled');
-        } else {
-            $tab.codes[config.right.code] = {action: config.right.action};
-            this.$right.style.visibility = 'inherit';
-            this.$right.onclick = function () {
-                if ( typeof config.right.action === 'function' ) {
-                    config.right.action();
-                }
-            };
-        }
-    } else if ( this.$right.style.visibility !== 'hidden' ) {
-        this.$right.style.visibility = 'hidden';
-    }
-
-    function addClick ( ind ) {
-        return function () {
-            if ( typeof config.middle[ind].action === 'function' ) {
-                config.middle[ind].action();
-            }
-        };
-    }
-
-    // middle buttons
-    if ( config.middle && config.middle.length ) {
-        for ( index = 0; index < config.middle.length; index++ ) {
-            $tab.codes[config.middle[index].code] = {action: config.middle[index].action};
-            if ( config.middle[index].disabled ) {
-                $tab.$body.children[index].classList.add('disabled');
-            } else {
-                $tab.$body.children[index].classList.remove('disabled');
-                $tab.$body.children[index].onclick = addClick(index);
-            }
-            // shortcut
-            $tabChildren = $tab.$body.children[index].children;
-            $tabChildren[0].className = 'iconImg ' +
-                (config.middle[index].className || ('theme-icon ' + (classes[config.middle[index].code] || 'theme-icon-warning')));
-
-            $tabChildren[1].innerText = config.middle[index].title || '';
-        }
-        $tab.$body.classList.remove('hidden');
-    }
-};
-
 if ( PLATFORM === 'ANDROID-STB' ) {
     /**
      * Redefine buttons for android-stb platform
@@ -359,7 +221,7 @@ if ( PLATFORM === 'ANDROID-STB' ) {
      * });
      *
      */
-    Footer.prototype.initLongPressMode = function ( config ) {
+    Footer.prototype.init = function ( config ) {
         var $tab, $tabChildren;
 
         config = config || {};
@@ -386,52 +248,143 @@ if ( PLATFORM === 'ANDROID-STB' ) {
             $tab.$body.classList.remove('hidden');
         }
     };
-}
+} else {
+    /**
+     * Redefine buttons
+     *
+     * @param {Object} [config] footer buttons config
+     * @param {Object} [config.left] left button config
+     * @param {number} [config.left.code] left button key code
+     * @param {boolean} [config.left.disabled] left button is disabled
+     * @param {Object} [config.left.action] left button press (click) action
+     * @param {Object} [config.middle] middle buttons config
+     * @param {Object} [config.right] right button config
+     * @param {number} [config.right.code] right button key code
+     * @param {boolean} [config.right.disabled] right button is disabled
+     * @param {Object} [config.right.action] right button press (click) action
+     * @param {number} [config.middle.code] button key code
+     * @param {Object} [config.middle.title] button title
+     * @param {boolean} [config.middle.disabled] button is disabled
+     * @param {Object} [config.middle.action] button press (click) action
+     * @param {Object} [config.label] button config
+     * @param {number} [config.label.code] button key code
+     * @param {Object} [config.label.title] button title
+     * @param {Object} [config.label.action] button press (click) action
+     *
+     * page.Footer.init({
+     *     left: {
+     *         code: keys.menu, action: function () {}
+     *     },
+     *     middle: [
+     *         {code: 55, action: function () {}},
+     *         {code: keys.f1, title: 'stop', action: function () {}},
+     *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
+     *         {code: keys.f4, title: 'end', disabled: true}
+     *     ],
+     *     right: {
+     *         code: 65, action: function () {}
+     *     }
+     * });
+     *
+     */
+    Footer.prototype.init = function ( config ) {
+        var index, $tab, $tabChildren;
 
-/**
- * Redefine buttons
- *
- * @param {Object} [config] footer buttons config
- * @param {Object} [config.left] left button config
- * @param {number} [config.left.code] left button key code
- * @param {boolean} [config.left.disabled] left button is disabled
- * @param {Object} [config.left.action] left button press (click) action
- * @param {Object} [config.middle] middle buttons config
- * @param {Object} [config.right] right button config
- * @param {number} [config.right.code] right button key code
- * @param {boolean} [config.right.disabled] right button is disabled
- * @param {Object} [config.right.action] right button press (click) action
- * @param {number} [config.middle.code] button key code
- * @param {Object} [config.middle.title] button title
- * @param {boolean} [config.middle.disabled] button is disabled
- * @param {Object} [config.middle.action] button press (click) action
- *
- * page.Footer.init({
- *     left: {
- *         code: keys.menu, action: function () {}
- *     },
- *     middle: [
- *         {code: 55, action: function () {}},
- *         {code: keys.f1, title: 'stop', action: function () {}},
- *         {code: 9000, className: 'customIcon', title: 'start', action: function () {}},
- *         {code: keys.f4, title: 'end', disabled: true}
- *     ],
- *     right: {
- *         code: 65, action: function () {}
- *     },
- *     label: {
- *         code: keys.menu, title: 'Hold OK button to open the task options', action: function () {}
- *     }
- * });
- *
- */
-Footer.prototype.init = function ( config ) {
-    if ( PLATFORM === 'ANDROID-STB' ) {
-        this.initLongPressMode(config);
-    } else {
-        this.initStandardMode(config);
-    }
-};
+        config = config || {};
+
+        if ( DEVELOP ) {
+            if ( config.middle && config.middle.length > 4 ) {
+                throw new Error(__filename + ': only 4 buttons allowed in footer');
+            }
+            if ( config.middle && Array.isArray(config.middle) ) {
+                for ( index = 0; index < config.middle.length; index++ ) {
+                    if ( typeof config.middle[index].action !== 'function' && !config.middle[index].disabled ) {
+                        throw new Error(__filename + ': action must be a function');
+                    }
+                    ++index;
+                }
+            }
+            if ( config.left && typeof config.left.action !== 'function' && !config.left.disabled ) {
+                throw new Error(__filename + ': action must be a function');
+            }
+            if ( config.right && typeof config.right.action !== 'function' && !config.right.disabled ) {
+                throw new Error(__filename + ': action must be a function');
+            }
+        }
+
+        // hide old tab
+        this.tabs[this.tab].$body.classList.add('hidden');
+        this.tab = config.middle && config.middle.length ? config.middle.length - 1 : 0;
+        // current tab shortcut
+        $tab = this.tabs[this.tab];
+        // reset all actions
+        $tab.codes = {};
+
+        // left button
+        if ( config.left ) {
+            this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
+            if ( config.left.disabled ) {
+                this.$left.classList.add('disabled');
+            } else {
+                $tab.codes[config.left.code] = {action: config.left.action};
+                this.$left.style.visibility = 'inherit';
+                this.$left.onclick = function () {
+                    if ( typeof config.left.action === 'function' ) {
+                        config.left.action();
+                    }
+                };
+            }
+        } else if ( this.$left.style.visibility !== 'hidden' ) {
+            this.$left.style.visibility = 'hidden';
+        }
+
+        // right button
+        if ( config.right ) {
+            this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
+            if ( config.right.disabled ) {
+                this.$right.classList.add('disabled');
+            } else {
+                $tab.codes[config.right.code] = {action: config.right.action};
+                this.$right.style.visibility = 'inherit';
+                this.$right.onclick = function () {
+                    if ( typeof config.right.action === 'function' ) {
+                        config.right.action();
+                    }
+                };
+            }
+        } else if ( this.$right.style.visibility !== 'hidden' ) {
+            this.$right.style.visibility = 'hidden';
+        }
+
+        function addClick ( ind ) {
+            return function () {
+                if ( typeof config.middle[ind].action === 'function' ) {
+                    config.middle[ind].action();
+                }
+            };
+        }
+
+        // middle buttons
+        if ( config.middle && config.middle.length ) {
+            for ( index = 0; index < config.middle.length; index++ ) {
+                $tab.codes[config.middle[index].code] = {action: config.middle[index].action};
+                if ( config.middle[index].disabled ) {
+                    $tab.$body.children[index].classList.add('disabled');
+                } else {
+                    $tab.$body.children[index].classList.remove('disabled');
+                    $tab.$body.children[index].onclick = addClick(index);
+                }
+                // shortcut
+                $tabChildren = $tab.$body.children[index].children;
+                $tabChildren[0].className = 'iconImg ' +
+                    (config.middle[index].className || ('theme-icon ' + (classes[config.middle[index].code] || 'theme-icon-warning')));
+
+                $tabChildren[1].innerText = config.middle[index].title || '';
+            }
+            $tab.$body.classList.remove('hidden');
+        }
+    };
+}
 
 
 // public
