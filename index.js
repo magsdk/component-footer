@@ -103,7 +103,7 @@ function Footer ( config ) {
     this.$table.insertRow();
     this.$table.rows[0].insertCell(-1);
 
-    if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
+    if ( TARGET !== 'android-stb' && TARGET !== 'android-app' ) {
         this.$table.rows[0].insertCell(-1);
         this.$table.rows[0].insertCell(-1);
 
@@ -113,7 +113,7 @@ function Footer ( config ) {
         this.$table.rows[0].cells[1].className = 'central';
         $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
     } else {
-        this.$table.rows[0].cells[0].className = 'central';
+        this.$table.rows[0].cells[0].className = 'central noButtons';
         $body = this.tabs[currentTab].$body = this.$table.rows[0].cells[0].appendChild(document.createElement('div'));
     }
 
@@ -121,10 +121,10 @@ function Footer ( config ) {
     $body.appendChild(document.createElement('div'));
     $body.lastChild.className = 'button';
     $body.lastChild.appendChild(document.createElement('div'));
-    $body.lastChild.appendChild(document.createElement('div'));
-    $body.lastChild.lastChild.className = 'title';
 
-    if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
+    if ( TARGET !== 'android-stb' && TARGET !== 'android-app' ) {
+        $body.lastChild.appendChild(document.createElement('div'));
+        $body.lastChild.lastChild.className = 'title';
         $body = this.tabs[++currentTab].$body = this.$table.rows[0].cells[1].appendChild(document.createElement('div'));
         $body.className = 'wrapper hidden';
         $body.appendChild(document.createElement('div'));
@@ -182,6 +182,8 @@ function Footer ( config ) {
 
         this.$right = this.$table.rows[0].cells[2].appendChild(document.createElement('div'));
         this.$right.className = 'theme-icon';
+    } else {
+        $body.lastChild.lastChild.className = 'title label';
     }
 
     this.init(config.data);
@@ -206,7 +208,7 @@ Footer.prototype.constructor = Footer;
 Footer.prototype.name = 'mag-component-footer';
 
 
-if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
+if ( TARGET !== 'android-stb' && TARGET !== 'android-app' ) {
     /**
      * Redefine buttons
      *
@@ -378,8 +380,8 @@ if ( ['android-stb', 'android-app'].indexOf(TARGET) === -1 ) {
             };
             // shortcut
             $tabChildren = $tab.$body.children[0].children;
-            $tabChildren[0].className = '';
-            $tabChildren[1].innerText = config.label.title || '';
+            // $tabChildren[0].className = '';
+            $tabChildren[0].innerText = config.label.title || '';
 
             $tab.$body.classList.remove('hidden');
         }

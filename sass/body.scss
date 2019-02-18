@@ -22,6 +22,10 @@
                 &.central {
                     width: $width - ($safePadding + $pagePadding) * 2 - $footerHeight * 2;
 
+                    &.noButtons {
+                        width: $width - ($safePadding + $pagePadding) * 2;
+                    }
+
                     & > .wrapper {
                         height: $footerHeight;
                         visibility: inherit;
@@ -45,6 +49,10 @@
 
                             .title {
                                 padding-left: $footerButtonsPadding / 2;
+
+                                &.label {
+                                    padding-left: 0;
+                                }
                             }
                         }
                     }
