@@ -46,5 +46,7 @@
             .mag-component-footer > table > tbody > tr > td .title, .mag-component-footer > table > tbody > tr > td .label {
                 display: block;
                 float: right; }
+            .mag-component-footer.hoverable .button:hover, .mag-component-footer.hoverable .simple-button:hover {
+                background-color:rgba(245, 245, 245, 0.2); }
     .mag-component-footer.focus {
         outline: 1px dashed red; }

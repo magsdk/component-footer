@@ -83,9 +83,10 @@ function Footer ( config ) {
     config.focusable = false;
     // hide by default
     config.visible = config.visible || false;
-    // create centered div
-    config.$body = document.createElement('div');
-    config.$body.className = 'body';
+
+    if ( config.hoverable === true ) {
+        config.className = ' hoverable';
+    }
 
     // parent constructor call
     Component.call(this, config);
@@ -282,7 +283,11 @@ if ( TARGET !== 'android-stb' && TARGET !== 'android-app' ) {
 
         // left button
         if ( config.left ) {
-            this.$left.className = config.left.className || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'));
+            this.$left.className = 'simple-button ' + (
+                config.left.className
+                || ('theme-icon ' + (classes[config.left.code] || 'theme-icon-warning'))
+            );
+
             if ( config.left.disabled ) {
                 this.$left.classList.add('disabled');
             } else {
@@ -300,7 +305,11 @@ if ( TARGET !== 'android-stb' && TARGET !== 'android-app' ) {
 
         // right button
         if ( config.right ) {
-            this.$right.className = config.right.className || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'));
+            this.$right.className = 'simple-button ' + (
+                config.right.className
+                || ('theme-icon ' + (classes[config.right.code] || 'theme-icon-warning'))
+            );
+
             if ( config.right.disabled ) {
                 this.$right.classList.add('disabled');
             } else {
