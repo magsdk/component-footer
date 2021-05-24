@@ -85,7 +85,7 @@ function Footer ( config ) {
     config.visible = config.visible || false;
 
     if ( config.hoverable === true ) {
-        config.className = ' hoverable';
+        config.className = 'hoverable';
     }
 
     // parent constructor call
